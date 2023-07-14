@@ -147,15 +147,16 @@ function getWorkingDaysInMonth($year, $month) {
                 <div class="row">
                     <div class="col-lg-6 offset-lg-3 offset-md-3">
                         <div class="form-area">
-                            <h2>Attendance Report</h2>
+                            <h2>Attendance Report For <?php echo date('F') ?></h2>
 
                             <table class="table table-bordered table-striped">
                                 <tr>
                                     <th>Staff ID</th>
                                     <th>Name</th>
-                                    <th>Attendance Count</th>
+                                    <th>Absent Days</th>
                                     <th>Actual Salary</th>
-                                    <th>Salary</th>
+                                    <th>Salary Deduction</th>
+                                    <th>Paid Salary</th>
                                 </tr>
                                 <?php foreach ($staffList as $staffMember) : ?>
                                     <tr>
@@ -163,7 +164,13 @@ function getWorkingDaysInMonth($year, $month) {
                                         <td><?php echo $staffMember['name']; ?></td>
                                         <td><?php echo isset($attendanceData[$staffMember['id']]) ? count($attendanceData[$staffMember['id']]) : 0; ?></td>
                                         <td><?php echo $staffMember['monthly_salary']; ?></td>
-                                        <td><?php echo number_format($salaryPerDay * (isset($attendanceData[$staffMember['id']]) && is_array($attendanceData[$staffMember['id']]) ? count($attendanceData[$staffMember['id']]) : 0), 2); ?></td>
+                                        <td>
+                                            <?php 
+                                            $absent_salary =  number_format($salaryPerDay * (isset($attendanceData[$staffMember['id']]) && is_array($attendanceData[$staffMember['id']]) ? count($attendanceData[$staffMember['id']]) : 0), 2); 
+                                            echo $absent_salary;
+                                            ?>
+                                        </td>
+                                        <td><?php echo number_format(($staffMember['monthly_salary'] - $absent_salary), 2); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </table>

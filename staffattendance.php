@@ -116,11 +116,11 @@ $staffList = $staff->getAllStaff();
                             <div class="form-bottom padding-top-30">
                             <h2>Staff Attendance For <?php echo date('Y-m-d') ?></h2>
                                 <?php 
-                                if(isset($_GET['msg']) && $_GET['msg']=== false){
+                                if(isset($_GET['msg']) && $_GET['msg'] === ''){
                                     $error = "Attendance already marked for the day";
                                         echo'<div class="alert alert-danger">'.$error.'</div>';
                                 }
-                                if(isset($_GET['msg']) && $_GET['msg'] !== false){
+                                elseif(isset($_GET['msg']) && $_GET['msg']){
                                     $success = "Attendance marked for the day sucessfully";
                                         echo'<div class="alert alert-success">'.$success.'</div>';
                                 }

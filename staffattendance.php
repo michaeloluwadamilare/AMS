@@ -114,7 +114,7 @@ $staffList = $staff->getAllStaff();
                     <div class="col-lg-8 offset-lg-2 offset-md-2">
                         <div class="form-area">
                             <div class="form-bottom padding-top-30">
-                            <h2>Staff Attendance For <?php echo date('F') ?></h2>
+                            <h2>Staff Attendance For <?php echo date('Y-m-d') ?></h2>
                                 <?php 
                                 if(isset($_GET['msg']) && $_GET['msg']=== false){
                                     $error = "Attendance already marked for the day";

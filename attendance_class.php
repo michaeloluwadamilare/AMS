@@ -33,10 +33,28 @@ class Attendance
 
     public function markAttendance($staffId, $date, $status)
     {
+        // Check if attendance already marked for the staff and date
+        $existingAttendance = $this->getAttendanceByStaffAndDate($staffId, $date);
+        if ($existingAttendance) {
+            // Attendance already marked for the staff and date
+            return false;
+        }
+
         $sql = "INSERT INTO attendance (staff_id, date, status) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("iss", $staffId, $date, $status);
-        return $stmt->execute();
+        $stmt->execute();
+        return true;
+    }
+
+    private function getAttendanceByStaffAndDate($staffId, $date)
+    {
+        $sql = "SELECT * FROM attendance WHERE staff_id = ? AND date = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("is", $staffId, $date);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
     public function getAttendanceByDate($date)

@@ -20,10 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $attendanceStatus = $_POST['attendance'];
     $date = date('Y-m-d');
     // Update the staff attendance
-    $attendance->markAttendance($staffId,$date, $attendanceStatus);
+    $result = $attendance->markAttendance($staffId,$date, $attendanceStatus);
 
     // Redirect back to the attendance page
-    header("Location: staffattendance.php");
+    header("Location: staffattendance.php?msg=".$result);
     exit;
 }
 ?>

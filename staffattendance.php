@@ -51,6 +51,39 @@ $staffList = $staff->getAllStaff();
       
 </head>
 <body>
+     <!--Header Start Here-->
+     <header>
+        <div class="container-fluid">
+          <div class="row">  
+            <div class="header-area">
+                <nav class="navbar navbar-area navbar-expand-lg">
+                    <div class="container nav-container">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#fortis_main_menu" 
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <!-- <span class="navbar-toggler-icon"> </span> -->
+                            <span class="cross-menu">
+                                <span class="bar1"></span>
+                                <span class="bar2"></span>
+                                <span class="bar3"></span> 
+                            </span>    
+                        </button>
+                        <div class="collapse navbar-collapse" id="fortis_main_menu">
+                            <ul class="navbar-nav">
+                                <li><a href="admin_dashboard.php">Staff Attendance Record</a></li>
+                                <li class=" current-menu-item">
+                                    <a href="staffattendance.php">Mark Attendance</a>
+                                </li>
+                                <li><a href="logout.php">Logout</a></li>            
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>                  
+          </div>
+        </div>
+    </header>    
+    <!--Header Area End Here-->
+
     <main>   
 
             
@@ -72,12 +105,6 @@ $staffList = $staff->getAllStaff();
                 </div>       
             </div>
         </section>
-        <h2>Welcome, <?php echo $username; ?>!</h2>
-
-        <!-- Add your admin dashboard content here -->
-        <p>This is the admin dashboard. You can add your custom content and functionality here.</p>
-
-        <a href="logout.php">Logout</a>
 
 
 
@@ -88,7 +115,17 @@ $staffList = $staff->getAllStaff();
                         <div class="form-area">
                             <div class="form-bottom padding-top-30">
                                 <h2>Staff Attendance</h2>
-
+                                <?php 
+                                if(isset($_GET['msg']) && $_GET['msg']=== false){
+                                    $error = "Attendance already marked for the day";
+                                        echo'<div class="alert alert-danger">'.$error.'</div>';
+                                }
+                                if(isset($_GET['msg']) && $_GET['msg'] !== false){
+                                    $success = "Attendance marked for the day sucessfully";
+                                        echo'<div class="alert alert-success">'.$success.'</div>';
+                                }
+                                
+                                ?>
                                 <table class="table table-bordered table-striped">
                                     <tr>
                                         <th>Staff ID</th>

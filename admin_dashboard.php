@@ -90,6 +90,37 @@ function getWorkingDaysInMonth($year, $month) {
       
 </head>
 <body>
+
+<header>
+        <div class="container-fluid">
+          <div class="row">  
+            <div class="header-area">
+                <nav class="navbar navbar-area navbar-expand-lg">
+                    <div class="container nav-container">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#fortis_main_menu" 
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <!-- <span class="navbar-toggler-icon"> </span> -->
+                            <span class="cross-menu">
+                                <span class="bar1"></span>
+                                <span class="bar2"></span>
+                                <span class="bar3"></span> 
+                            </span>    
+                        </button>
+                        <div class="collapse navbar-collapse" id="fortis_main_menu">
+                            <ul class="navbar-nav">
+                                <li class=" current-menu-item"><a href="admin_dashboard.php">Staff Attendance Record</a></li>
+                                <li class="">
+                                    <a href="staffattendance.php">Mark Attendance</a>
+                                </li>
+                                <li><a href="logout.php">Logout</a></li>            
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>                  
+          </div>
+        </div>
+    </header>    
     <main>   
 
             
@@ -111,15 +142,6 @@ function getWorkingDaysInMonth($year, $month) {
                 </div>       
             </div>
         </section>
-        <h2>Welcome, <?php echo $username; ?>!</h2>
-
-        <!-- Add your admin dashboard content here -->
-        <p>This is the admin dashboard. You can add your custom content and functionality here.</p>
-
-        <a href="logout.php">Logout</a>
-
-
-
         <section class="contact-section padding-20" >
             <div class="container">
                 <div class="row">
@@ -141,7 +163,7 @@ function getWorkingDaysInMonth($year, $month) {
                                         <td><?php echo $staffMember['name']; ?></td>
                                         <td><?php echo isset($attendanceData[$staffMember['id']]) ? count($attendanceData[$staffMember['id']]) : 0; ?></td>
                                         <td><?php echo $staffMember['monthly_salary']; ?></td>
-                                        <td><?php echo number_format($salaryPerDay * count($attendanceData[$staffMember['id']]),2); ?></td>
+                                        <td><?php echo number_format($salaryPerDay * (isset($attendanceData[$staffMember['id']]) && is_array($attendanceData[$staffMember['id']]) ? count($attendanceData[$staffMember['id']]) : 0), 2); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </table>

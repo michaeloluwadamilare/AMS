@@ -13,9 +13,9 @@ class Attendance
         $attendanceData = array();
 
         // Query the database to fetch attendance records for the specified month and year
-        $sql = "SELECT staff_id FROM attendance WHERE MONTH(date) = ? AND YEAR(date) = ? AND status = ?";
+        $sql = "SELECT staff_id FROM attendance WHERE MONTH(date) = ? AND YEAR(date) = ? AND status = 'Absent'";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("iii", $month, $year,'Absent');
+        $stmt->bind_param("ii", $month, $year);
         $stmt->execute();
         $result = $stmt->get_result();
 

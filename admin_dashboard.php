@@ -154,9 +154,9 @@ function getWorkingDaysInMonth($year, $month) {
                                     <th>Staff ID</th>
                                     <th>Name</th>
                                     <th>Absent Days</th>
-                                    <th>Actual Salary</th>
-                                    <th>Salary Deduction</th>
-                                    <th>Paid Salary</th>
+                                    <th>Actual Salary(&#8358;)</th>
+                                    <th>Salary Deduction(&#8358;)</th>
+                                    <th>Paid Salary(&#8358;)</th>
                                 </tr>
                                 <?php foreach ($staffList as $staffMember) : ?>
                                     <tr>

@@ -149,9 +149,6 @@ $staffList = $staff->getAllStaff();
                                         </tr>
                                     <?php endforeach; ?>
                                 </table>
-
-
-                            <a href="admin_dashboard.php">Back to Dashboard</a>
                         </div>
                     </div>
                 </div>
